@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Binding</h2>
+        <ul>
+            <li>@Html.ActionLink("Multiple checkboxes (via form POST)", "MultipleCheckboxViaFormPost", "Binding")</li>
+            <li>@Html.ActionLink("Multiple checkboxes (via AJAX POST)", "MultipleCheckboxViaAjaxPost", "Binding")</li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h2>Redirect</h2>
+        <ul>
+            <li>@Html.ActionLink("Redirect (server-side)", "RedirectServerSide", "Redirect")</li>
+            <li>@Html.ActionLink("Redirect (client-side)", "RedirectClientSide", "Redirect")</li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h2>Widget frameworks</h2>
+        <ul>
+            <li>@Html.ActionLink("Grid (Kendo UI)", "Grid", "Kendo")</li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Entity Framework</h2>
+        <ul>
+            <li>@Html.ActionLink("Include (vb. parent-child)", "Include", "EntityFramework")</li>
+            <li>@Html.ActionLink("Identity column (vb. auto generated key)", "IdentityColumn", "EntityFramework")</li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>

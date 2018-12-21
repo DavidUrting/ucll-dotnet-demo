@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "Redirect client-side";
+}
+
+<h2>Redirect client-side</h2>
+
+<p></p>
+<p>Click button to redirect in JavaScript.</p>
+<button id="redirect">Redirect</button>
+
+<script>
+    // OPGELET: dit moet in principe naar een apart .js bestand!
+    document.getElementById("redirect").addEventListener("click", function (event) {
+        window.location = "http://geek-and-poke.com/geekandpoke/2013/7/22/future-proof-your-data-model";
+    });
+</script>
+
+

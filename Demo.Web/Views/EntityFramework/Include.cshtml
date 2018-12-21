@@ -1,0 +1,21 @@
+﻿@model Demo.Domain.Parent
+
+@{
+    ViewData["Title"] = "Include";
+}
+
+<h2>Include</h2>
+
+<div>
+    <h3>Parent @Model.Id heeft deze child records:</h3>
+    <table>
+        <tr><td>ID</td></tr>
+        @foreach (var child in Model.Children)
+        {
+            <tr><td>@child.Id</td></tr>
+        }
+    </table>
+</div>
+<div>
+    <a asp-action="Index" asp-controller="Home">Back to home</a>
+</div>

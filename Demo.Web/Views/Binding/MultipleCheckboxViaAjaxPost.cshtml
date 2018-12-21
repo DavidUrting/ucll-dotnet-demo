@@ -1,0 +1,67 @@
+﻿@model Demo.Models.Binding.MultipleCheckboxViewModel
+
+@{
+    ViewData["Title"] = "Multiple checkbox via AJAX POST";
+}
+
+<h2>Multiple checkbox via AJAX POST</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="MultipleCheckboxViaAjaxPost">
+
+            @foreach (var item in Model.Checkboxen)
+            {
+                <label><input type="checkbox" name="@item.ID" />@item.Text</label>
+                <br />
+            }
+
+            <div class="form-group">
+                <input id="submit" type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <p><strong>Server feedback:</strong> <em><span id="feedback"></span></em></p>
+</div>
+
+<script>
+    // OPGELET: dit moet in principe naar een apart .js bestand!
+    document.getElementById("submit").addEventListener("click", function (event) {
+        try {
+            // We maken een JavaScript object dat 1-1 mapt met de specificatie van MultipleCheckboxViewModel.
+            var model = {
+                checkboxen: []
+            };
+
+            // Ophalen van alle inputs van type checkbox.
+            var checkboxInputs = document.querySelectorAll("input[type='checkbox']");
+            checkboxInputs.forEach(cb => {
+                model.checkboxen.push({
+                    id: cb.getAttribute("name"),
+                    selected: cb.checked
+                });
+            });
+
+            // Ajax call
+            $.post("/binding/MultipleCheckboxViaAjaxPost", model, function (response) {
+                document.getElementById("feedback").innerText = response;
+            });
+        } finally {
+            // Dit zorgt ervoor dat er geen form submit gebeurt.
+            // Zo zal er ook geen page refresh plaatsvinden.
+            event.preventDefault();
+        }
+    });
+</script>
+
+<div>
+    <a asp-action="Index" asp-controller="Home">Back to home</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

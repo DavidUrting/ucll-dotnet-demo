@@ -1,0 +1,34 @@
+﻿@model Demo.Models.Binding.MultipleCheckboxViewModel
+
+@{
+    ViewData["Title"] = "Multiple checkbox via form POST";
+}
+
+<h2>Multiple checkbox via form POST</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="MultipleCheckboxViaFormPost">
+            
+            @for (int i = 0; i < Model.Checkboxen.Count(); i++)
+            {
+                <label><input type="checkbox" asp-for="@Model.Checkboxen[i].Selected" />@Model.Checkboxen[i].Text</label>
+                <input type="hidden" asp-for="@Model.Checkboxen[i].ID"/>
+                <br />
+            }
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Home">Back to home</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

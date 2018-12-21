@@ -1,0 +1,31 @@
+﻿@model Demo.Models.Kendo.GridViewModel
+
+@{
+    ViewData["Title"] = "Kendo voorbeelden";
+}
+
+<h2>Kendo Grid voorbeeld</h2>
+<p>De gegevens worden asynchroon opgehaald via een Grid_Read action op de KendoController.</p>
+
+@(Html.Kendo().Grid<Demo.Models.Kendo.GridViewModel>()
+            .Name("grid")
+            .Columns(columns =>
+            {
+                columns.Bound(c => c.ID);
+                columns.Bound(c => c.Name);
+                columns.Bound(c => c.Description);
+            })
+            .HtmlAttributes(new { style = "height: 550px;" })
+            .Scrollable()
+            .Groupable()
+            .Sortable()
+            .Pageable(pageable => pageable
+                .Refresh(true)
+                .PageSizes(true)
+                .ButtonCount(5))
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read(read => read.Action("Grid_Read", "Kendo"))
+                .PageSize(20)
+            )
+)
