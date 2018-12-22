@@ -1,0 +1,18 @@
+﻿@model Demo.Web.Models.Binding.DropDownViewModel
+
+@{
+    ViewData["Title"] = "DropDown via form POST";
+}
+
+<h2>DropDown via form POST</h2>
+
+<form asp-action="DropDownViaFormPost" method="post">
+    <label asp-for="SelectedValue">Selecteer een waarde</label>
+    <br />
+    <select asp-for="SelectedValue" asp-items="@Model.DropDownItems"></select>
+    <br />
+    <input type="submit" value="Submit" />
+</form>
+<div>
+    <a asp-action="Index" asp-controller="Home">Back to home</a>
+</div>
